@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"
+            type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+           // alert("im ready");
+            $.getJSON("videos.json", function (data) {
+                //alert("get..");
+                var items = [];
+                alert(data);
+                $.each(data.videobyuser, function (key, val) {
+                    alert(key);
+                    
+                    if (key == "uid") {
+                        items.push("<iframe src='http:\/\/www.aparat.com\/\/video\/video\/embed\/videohash\/" + val + "\/vt\/frame'></iframe>");
+                        alert(val);
+                    }
+                });
+
+                $("<div/>", {
+                    html: items.join("")
+                }).appendTo("body");
+            }).fail(function(){
+                alert("failed");
+            });
+        });
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
